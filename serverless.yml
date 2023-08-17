@@ -1,5 +1,5 @@
 # CHANGE-TO-YOURNAME-aws-node-http-api-project
-service: 3.13_ServerlessSecretMgmt_project
+service: pohleng_ServerlessSecretMgmt_project
 frameworkVersion: '3'
 
 provider:
