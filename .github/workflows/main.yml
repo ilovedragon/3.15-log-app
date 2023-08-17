@@ -42,10 +42,10 @@ jobs:
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
-            pohleng-parameter
+          POHLENG-SECRET
       - name: Echo Secret
         run: |
-          echo ${{ env.pohleng-parameter }}
+          echo ${{ env.POHLENG-SECRET }}
 
 
 
