@@ -40,7 +40,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: aws cli show Secret
         run: |
-        aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
+          aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
 
 
 
