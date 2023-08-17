@@ -1,0 +1,22 @@
+{
+  "name": "3.13_serverlesssecretmgmt",
+  "version": "1.0.0",
+  "description": "The objective of this assignment is to set up a continuous integration and continuous deployment (CI/CD) pipeline for a Node.js application that is deployed on a serverless platform with Secret Management in placed!.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilovedragon/3.13_ServerlessSecretMgmt.git"
+  },
+  "author": "Poh Leng NG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilovedragon/3.13_ServerlessSecretMgmt/issues"
+  },
+  "homepage": "https://github.com/ilovedragon/3.13_ServerlessSecretMgmt#readme",
+  "dependencies": {
+    "serverless": "^3.34.0"
+  }
+}
