@@ -41,6 +41,9 @@ jobs:
       - name: aws cli show Secret
         run: |
           aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
+      - name: aws cli show SSM
+        run: |
+          aws ssm get-parameter --name pohleng-parameter
 
 
 
