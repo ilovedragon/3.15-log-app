@@ -45,7 +45,7 @@ jobs:
             POHLENG-SECRET
       - name: Echo Secret
         run: |
-          echo ${{ env.POHLENG-SECRET }}
+          echo "My secret is ${{ env.POHLENG-SECRET }}"
 
 
 
