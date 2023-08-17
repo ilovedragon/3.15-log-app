@@ -38,14 +38,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Get AWS secrets
-        uses: aws-actions/aws-secretsmanager-get-secrets@v1
-        with:
-          secret-ids: |
-            POHLENG-SECRET
-      - name: Echo Secret
+      - name: aws cli show Secret
         run: |
-          echo "My secret is ${{ env.POHLENG-SECRET }}"
+        aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
 
 
 
