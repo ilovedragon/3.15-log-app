@@ -1,13 +1,6 @@
-name: 3.13_ServerlessSecretMgmt
+name: 3.15-log-app
 run-name: ${{ github.actor }} is deploying a serverless platform with Secret Management
-on: 
-  push:
-    branches:
-      - dev
-  workflow_dispatch:
-    branches:
-      - main
-   
+on: [push]
 
 jobs: 
   predeploy:
@@ -39,28 +32,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: unit-testing
     steps:
-      - name: Read config file
-        id: env
-        run: |
-          branch_name="${{ steps.branch.outputs.branch }}"
-          if [[ "$branch_name" == "main" ]]; then
-            config_path="env/main.json"
-          else
-            config_path="env/dev.json"
-          fi
-          aws_access_key_id=$(jq -r ".${branch_name}.aws-access-key-id" $config_path)
-          aws_secret_access_key=$(jq -r ".${branch_name}.aws-secret-access-key" $config_path)
-          aws_region=$(jq -r ".${branch_name}.aws-region" $config_path)
-          echo "::set-output name=aws_access_key_id::$aws_access_key_id"
-          echo "::set-output name=aws_secret_access_key::$aws_secret_access_key"
-          echo "::set-output name=aws_region::$aws_region"
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ steps.env.outputs.aws_access_key_id }}
-          aws-secret-access-key: ${{ steps.env.outputs.aws_secret_access_key }}
-          aws-region: ${{ steps.config.outputs.aws_region }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
       - name: aws cli show Secret
         run: |
           aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
