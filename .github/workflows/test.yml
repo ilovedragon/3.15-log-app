@@ -20,12 +20,8 @@ jobs:
     
     - name: Load environment variables
       run: |
-        # Load environemtn variables from env/dev_env_var
-        if [ -f .env.dev ]; then
-        source .env.dev
-        else
-          echo " .env.dev file not found."
-        fi
+      export aws_access_key_id= '${{ secrets.DEV_AWS_ACCESS_KEY_ID  }}'
+      echo "$aws_access_key_id"
 
     - name: Echo environment variables
       run: |
