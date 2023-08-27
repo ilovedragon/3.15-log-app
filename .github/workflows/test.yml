@@ -21,10 +21,10 @@ jobs:
     - name: Load environment variables
       run: |
         # Load environemtn variables from env/dev_env_var
-        if [ -f env/dev_env_var ]; then
-        source env/dev_env_var
+        if [ -f .env.dev ]; then
+        source .env.dev
         else
-          echo "env/dev_env_var file not found."
+          echo " .env.dev file not found."
         fi
 
     - name: Echo environment variables
