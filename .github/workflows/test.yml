@@ -22,7 +22,7 @@ jobs:
       run: |
         # Load environment variables from env/dev_env_var
         if [ -f env/dev_env_var ]; then
-          cat  env/dev_env_var
+          export $(cat env/dev_env_var | xargs)
         else
           echo "env/dev_env_var file not found."
         fi
