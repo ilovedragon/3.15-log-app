@@ -67,6 +67,7 @@ jobs:
         args: deploy
       env:
         role-to-assume: arn:aws:iam::255945442255:role/test-oidc
+        aws-region: ${{ secrets.AWS_REGION }}
         
 
 
