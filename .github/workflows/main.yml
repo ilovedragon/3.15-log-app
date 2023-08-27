@@ -34,8 +34,13 @@ jobs:
   get-secret:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3    
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Read branch name
+        id: branch
+        run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk -F'/' '{print $NF}')"
+ 
       - name: Read config file
         id: env
         run: |
