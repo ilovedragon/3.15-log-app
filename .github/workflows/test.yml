@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - dev
+
+# permission can be added at job level or workflow level     
+permissions: 
+  id-token: write   # This is required for requesting the JWT 
     
 jobs: 
   predeploy:
@@ -12,28 +16,21 @@ jobs:
       - name: Display Event Name
         run: echo "The job is automatically triggered by a ${{ github.event_name }} event."
 
-  read-env-file:
+  get-secret:
     runs-on: ubuntu-latest
-    steps: 
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Load environment variables
-      run: |
-        # Load environment variables from env/dev_env_var
-        if [ -f env/dev_env_var ]; then
-          export $(cat env/dev_env_var | xargs)
-        else
-          echo "env/dev_env_var file not found."
-        fi
-
-    - name: Echo environment variables
-      run: |
-        # Now you can access your environment variables here
-        echo "$aws_access_key_id"
-        echo "$aws_secret_access_key"
-        echo "$aws_region"
-
+    needs: unit-testing
+    steps:
+        - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+            role-to-assume: arn:aws:iam::255945442255:role/test-oidc
+            aws-region: ${{ secrets.AWS_REGION }}
+        - name: aws cli show Secret
+        run: |
+            aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
+        - name: aws cli show SSM
+        run: |
+            aws ssm get-parameter --name pohleng-parameter
 
 
     
