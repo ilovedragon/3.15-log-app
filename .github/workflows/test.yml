@@ -21,15 +21,15 @@ jobs:
     needs: unit-testing
     steps:
         - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
+          uses: aws-actions/configure-aws-credentials@v2
+          with:
             role-to-assume: arn:aws:iam::255945442255:role/test-oidc
             aws-region: ${{ secrets.AWS_REGION }}
         - name: aws cli show Secret
-        run: |
+          run: |
             aws secretsmanager get-secret-value --secret-id POHLENG-SECRET
         - name: aws cli show SSM
-        run: |
+          run: |
             aws ssm get-parameter --name pohleng-parameter
 
 
