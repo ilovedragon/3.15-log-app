@@ -26,9 +26,9 @@ jobs:
     - name: Echo environment variables
       run: |
         # Now you can access your environment variables here
-        echo $aws_access_key_id
-        echo $aws_secret_access_key
-        echo $aws_region
+        echo "$aws_access_key_id"
+        echo "$aws_secret_access_key"
+        echo "$aws_region"
 
 
 
