@@ -1,0 +1,32 @@
+name: 3.15-log-app
+run-name: ${{ github.actor }} is deploying a serverless platform with Secret Management
+on: 
+  push:
+    dev
+    
+jobs: 
+  predeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "The job is automatically triggered by a ${{ github.event_name }} event."
+
+  read-env-file:
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v3
+    
+    - name: Load environment variables
+      run: |
+        # Load environemtn variables from env/dev_env_var
+        source env/dev_env_var
+
+    - name: Echo environment variables
+      run: |
+        # Now you can access your environment variables here
+        echo $aws_access_key_id
+        echo $aws_secret_access_key
+        echo $aws_region
+
+
+
+    

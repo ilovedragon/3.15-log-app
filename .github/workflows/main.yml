@@ -1,7 +1,9 @@
 name: 3.15-log-app
 run-name: ${{ github.actor }} is deploying a serverless platform with Secret Management
-on: [push]
-
+on: 
+  push:
+    main
+    
 jobs: 
   predeploy:
     runs-on: ubuntu-latest
