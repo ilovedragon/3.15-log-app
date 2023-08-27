@@ -4,15 +4,6 @@ on:
   push:
     branches:
       - dev
-  workflow_dispatch:
-    inputs:
-      choice:
-        type: choice
-        description: Select the environment
-        options:
-        - dev
-        - main     
-   
 
 jobs: 
   predeploy:
@@ -42,18 +33,9 @@ jobs:
 
   get-secret:
     runs-on: ubuntu-latest
-    needs: unit-testing
     steps:
-      - uses: actions/checkout@v2
-
-      - name: print environment
-        run: | 
-          echo "choice is ${{ github.event.inputs.choice }}" / ${{ inputs.choice }}
-     
-      - name: your action
-        run: |
-        echo "Now you can continue with your project!"
-      
+      - name: Check out repository code
+        uses: actions/checkout@v3    
       - name: Read config file
         id: env
         run: |
