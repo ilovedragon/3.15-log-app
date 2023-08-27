@@ -20,9 +20,9 @@ jobs:
     
     - name: Load environment variables
       run: |
-        if [ ! -f env/dev_env_var ]
+        if [ ! -f .env.dev ]
           then
-            export $(cat env/dev_env_var | xargs)
+            export $(cat .env.dev | xargs)
         fi
 
     - name: Echo environment variables
