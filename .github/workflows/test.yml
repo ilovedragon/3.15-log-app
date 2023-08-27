@@ -32,3 +32,19 @@ jobs:
             aws ssm get-parameter --name pohleng-parameter
 
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Check out repository code
+          uses: actions/checkout@v3
+        - name: Run installation of dependencies commands
+          run: npm ci
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v2
+          with:
+            role-to-assume: arn:aws:iam::255945442255:role/test-oidc
+            aws-region: ${{ secrets.AWS_REGION }}
+        - name: Install Serverless Framework
+          run: npm install -g serverless
+        - name: Serverless Deploy
+          run: serverless deploy --verbose        

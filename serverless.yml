@@ -1,5 +1,5 @@
 # CHANGE-TO-YOURNAME-aws-node-http-api-project
-service: pohleng313-serverless-secret
+service: pohleng315-log-app
 frameworkVersion: '3'
 
 provider:
