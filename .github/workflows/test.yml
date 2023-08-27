@@ -2,18 +2,20 @@ name: 3.15-log-app
 run-name: ${{ github.actor }} is deploying a serverless platform with Secret Management
 on: 
   push:
-    dev
+    - dev
     
 jobs: 
   predeploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The job is automatically triggered by a ${{ github.event_name }} event."
+      - name: Display Event Name
+        run: echo "The job is automatically triggered by a ${{ github.event_name }} event."
 
   read-env-file:
     runs-on: ubuntu-latest
     steps: 
-    - uses: actions/checkout@v3
+    - name: Checkout code
+        uses: actions/checkout@v3
     
     - name: Load environment variables
       run: |
