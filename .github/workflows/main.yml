@@ -5,8 +5,13 @@ on:
     branches:
       - dev
   workflow_dispatch:
-    branches:
-      - main
+    inputs:
+      choice:
+        type: choice
+        description: Select the environment
+        options:
+        - dev
+        - main     
    
 
 jobs: 
@@ -39,6 +44,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: unit-testing
     steps:
+      - uses: actions/checkout@v2
+
+      - name: print environment
+        run: | 
+          echo "choice is ${{ github.event.inputs.choice }}" / ${{ inputs.choice }}
+     
+      - name: your action
+        run: |
+        echo "Now you can continue with your project!"
+      
       - name: Read config file
         id: env
         run: |
@@ -84,8 +99,8 @@ jobs:
       with:
         args: deploy
       env:
-        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID:  ${{ steps.env.outputs.aws_access_key_id }}
+        AWS_SECRET_ACCESS_KEY:  ${{ steps.env.outputs.aws_secret_access_key }}
 
 
 
