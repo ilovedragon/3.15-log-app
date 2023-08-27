@@ -1,5 +1,5 @@
 {
-  "name": "3.13_serverlesssecretmgmt",
+  "name": "3.15_LOG_APP",
   "version": "1.0.0",
   "description": "The objective of this assignment is to set up a continuous integration and continuous deployment (CI/CD) pipeline for a Node.js application that is deployed on a serverless platform with Secret Management in placed!.",
   "main": "index.js",

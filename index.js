@@ -1,4 +1,6 @@
 module.exports.handler = async (event) => {
+  // Log a message to CloudWatch Logs
+  console.log('Lambda function executed with event:', JSON.stringify(event));
     return {
       statusCode: 200,
       body: JSON.stringify(
@@ -11,3 +13,5 @@ module.exports.handler = async (event) => {
       ),
     };
   };
+
+  
